@@ -9,10 +9,12 @@ namespace CrowdCat.TechnicalTest.StackExchange
         public static IServiceCollection AddStackExchangeModule(this IServiceCollection serviceCollection) =>
             serviceCollection
                 .AddScoped<IQuestionRepository, QuestionRepository>()
-                .AddHttpClient(QuestionRepository.ClientName, options =>
+                .AddHttpClient(QuestionClient.ClientName, options =>
                 {
                     options.BaseAddress = new Uri("https://api.stackexchange.com/2.2");
                 })
-                .Services;
+                .Services
+                .AddScoped<IQuestionClient, QuestionClient>()
+                .AddTransient<IJsonMapper, JsonMapper>();
     }
 }

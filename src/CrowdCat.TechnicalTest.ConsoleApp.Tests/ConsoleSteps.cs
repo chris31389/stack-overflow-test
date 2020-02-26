@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -18,7 +19,7 @@ namespace CrowdCat.TechnicalTest.ConsoleApp.Tests
         public void GivenIHaveTheDate(string date) => _consoleDriver.DateInputParameter = date;
 
         [When(@"I start the console application")]
-        public void WhenIStartTheConsoleApplication() => _consoleDriver.Run();
+        public async Task WhenIStartTheConsoleApplication() => await _consoleDriver.Run();
 
         [Then(@"I should see the total number of questions")]
         public void ThenIShouldSeeTheTotalNumberOfQuestions()

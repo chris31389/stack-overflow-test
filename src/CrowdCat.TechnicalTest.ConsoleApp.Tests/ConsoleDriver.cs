@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CrowdCat.TechnicalTest.ConsoleApp.Tests
 {
@@ -18,21 +18,21 @@ namespace CrowdCat.TechnicalTest.ConsoleApp.Tests
 
         public string Output => _testingConsoleOutput.ToString();
 
-        public void Run()
+        public async Task Run()
         {
             StartCapturingConsoleOutput();
-            RunConsoleApplication(DateInputParameter);
+            await RunConsoleApplication(DateInputParameter);
             StopCapturingConsoleOutput();
         }
 
-        private static void RunConsoleApplication(params string[] arguments) => Program.Main(arguments);
+        private static async Task RunConsoleApplication(params string[] arguments) => await TestProgram.Main(arguments);
 
         private void StartCapturingConsoleOutput()
         {
             // Set current folder to testing folder
             string assemblyCodeBase = Assembly.GetExecutingAssembly().CodeBase;
 
-            // Get directory name
+            // GetAsync directory name
             string dirName = Path.GetDirectoryName(assemblyCodeBase);
 
             // remove URL-prefix if it exists

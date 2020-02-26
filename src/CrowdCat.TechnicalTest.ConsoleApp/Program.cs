@@ -6,6 +6,9 @@ namespace CrowdCat.TechnicalTest.ConsoleApp
     {
         public static void Main(string[] args)
         {
+            // An argument parser could be used here
+
+
             Console.WriteLine("Hello World!");
         }
     }

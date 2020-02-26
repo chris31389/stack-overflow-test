@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace CrowdCat.TechnicalTest.ConsoleApp.Tests
+namespace CrowdCat.TechnicalTest.ConsoleApp.UnitTests
 {
     [TestFixture]
     public class DateTimeExtensionTests

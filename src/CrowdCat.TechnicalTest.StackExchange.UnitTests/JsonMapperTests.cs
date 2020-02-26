@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using CrowdCat.TechnicalTest.Domain;
+﻿using System.Linq;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace CrowdCat.TechnicalTest.StackExchange.UnitTests
 {

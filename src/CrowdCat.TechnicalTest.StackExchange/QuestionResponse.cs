@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CrowdCat.TechnicalTest.Domain;
 
 namespace CrowdCat.TechnicalTest.StackExchange

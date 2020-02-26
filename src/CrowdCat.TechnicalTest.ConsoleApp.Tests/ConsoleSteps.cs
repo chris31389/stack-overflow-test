@@ -15,8 +15,7 @@ namespace CrowdCat.TechnicalTest.ConsoleApp.Tests
         }
 
         [Given(@"I have the date ""(.*)""")]
-        public void GivenIHaveTheDate(DateTime dateTime) =>
-            _consoleDriver.DateTimeUtc = new DateTime(dateTime.Ticks, DateTimeKind.Utc);
+        public void GivenIHaveTheDate(string date) => _consoleDriver.DateInputParameter = date;
 
         [When(@"I start the console application")]
         public void WhenIStartTheConsoleApplication() => _consoleDriver.Run();

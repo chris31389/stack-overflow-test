@@ -1,4 +1,6 @@
 ﻿using System;
+using CrowdCat.TechnicalTest.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CrowdCat.TechnicalTest.ConsoleApp
 {
@@ -6,10 +8,13 @@ namespace CrowdCat.TechnicalTest.ConsoleApp
     {
         public static void Main(string[] args)
         {
-            // An argument parser could be used here
+            ServiceProvider serviceProvider = new ServiceCollection()
+                .AddConsoleModule()
+                .AddAppModule()
+                .BuildServiceProvider();
 
-
-            Console.WriteLine("Hello World!");
+            ConsoleAppService consoleAppService = serviceProvider.GetService<ConsoleAppService>();
+            consoleAppService.Run(args);
         }
     }
 }

@@ -14,15 +14,14 @@ namespace CrowdCat.TechnicalTest.ConsoleApp.Tests
         private TextWriter _normalConsoleOutput;
         private StringWriter _testingConsoleOutput;
         private StringBuilder _testingStringBuilder;
-        public DateTime DateTimeUtc { get; set; }
+        public string DateInputParameter { get; set; }
 
         public string Output => _testingConsoleOutput.ToString();
 
         public void Run()
         {
             StartCapturingConsoleOutput();
-            string unixTimestamp = DateTimeUtc.ToUnixTimestamp().ToString(CultureInfo.InvariantCulture);
-            RunConsoleApplication(unixTimestamp);
+            RunConsoleApplication(DateInputParameter);
             StopCapturingConsoleOutput();
         }
 

@@ -2,7 +2,7 @@
 
 namespace CrowdCat.TechnicalTest.ConsoleApp
 {
-    public class DateParser
+    public class DateParser : IDateParser
     {
         public DateTime? Parse(string date)
         {

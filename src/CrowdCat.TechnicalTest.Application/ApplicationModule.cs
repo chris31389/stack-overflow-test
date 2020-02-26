@@ -4,6 +4,7 @@ namespace CrowdCat.TechnicalTest.Application
 {
     public static class ApplicationModule
     {
-        public static IServiceCollection AddApplicationModule(this IServiceCollection serviceCollection) => serviceCollection;
+        public static IServiceCollection AddApplicationModule(this IServiceCollection serviceCollection) => serviceCollection
+            .AddScoped<IDaySummaryService, DaySummaryService>();
     }
 }

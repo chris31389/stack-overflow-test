@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using CrowdCat.TechnicalTest.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -6,7 +6,7 @@ namespace CrowdCat.TechnicalTest.ConsoleApp
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             ServiceProvider serviceProvider = new ServiceCollection()
                 .AddConsoleModule()
@@ -14,7 +14,7 @@ namespace CrowdCat.TechnicalTest.ConsoleApp
                 .BuildServiceProvider();
 
             ConsoleAppService consoleAppService = serviceProvider.GetService<ConsoleAppService>();
-            consoleAppService.Run(args);
+            await consoleAppService.Run(args);
         }
     }
 }

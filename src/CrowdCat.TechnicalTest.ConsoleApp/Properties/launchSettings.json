@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CrowdCat.TechnicalTest.ConsoleApp": {
+      "commandName": "Project",
+      "commandLineArgs": "\"2019-04-01\""
+    }
+  }
+}

@@ -9,15 +9,18 @@ namespace CrowdCat.TechnicalTest.ConsoleApp
         private readonly IDateParser _dateParser;
         private readonly IDaySummaryService _daySummaryService;
         private readonly ITagFormatter _tagFormatter;
+        private readonly IAppOutput _appOutput;
 
         public ConsoleAppService(
             IDateParser dateParser,
             IDaySummaryService daySummaryService,
-            ITagFormatter tagFormatter)
+            ITagFormatter tagFormatter,
+            IAppOutput appOutput)
         {
             _dateParser = dateParser ?? throw new ArgumentNullException(nameof(dateParser));
             _daySummaryService = daySummaryService ?? throw new ArgumentNullException(nameof(daySummaryService));
             _tagFormatter = tagFormatter ?? throw new ArgumentNullException(nameof(tagFormatter));
+            _appOutput = appOutput ?? throw new ArgumentNullException(nameof(appOutput));
         }
 
         public async Task Run(string[] args)
@@ -25,7 +28,7 @@ namespace CrowdCat.TechnicalTest.ConsoleApp
             // An argument parser could be used here
             if (args.Length == 0)
             {
-                Console.WriteLine("A date must be provided in the format yyyy-MM-dd");
+                _appOutput.WriteLine("A date must be provided in the format yyyy-MM-dd");
 
                 // No date provided so terminate early
                 return;
@@ -34,7 +37,7 @@ namespace CrowdCat.TechnicalTest.ConsoleApp
             DateTime? dateTime = _dateParser.Parse(args[0]);
             if (!dateTime.HasValue)
             {
-                Console.WriteLine($"the input date '{args[0]}' must be provided in the format yyyy-MM-dd");
+                _appOutput.WriteLine($"the input date '{args[0]}' must be provided in the format yyyy-MM-dd");
 
                 // No date could be parsed so terminate early
                 return;
@@ -43,7 +46,7 @@ namespace CrowdCat.TechnicalTest.ConsoleApp
             DaySummaryDto daySummaryDto = await _daySummaryService.GetSummaryAsync(dateTime.Value);
             if (daySummaryDto == null)
             {
-                Console.WriteLine(
+                _appOutput.WriteLine(
                     $"an error occured when trying to retrieve the summary for the date '{dateTime.Value}'. " +
                     $"Please try again.");
 
@@ -51,13 +54,13 @@ namespace CrowdCat.TechnicalTest.ConsoleApp
                 return;
             }
 
-            Console.WriteLine($"Summary for date: {dateTime.Value:yyyy-MM-dd}");
-            Console.WriteLine($"Total questions: {daySummaryDto.QuestionTotal}");
-            Console.WriteLine($"Total views: {daySummaryDto.ViewTotal}");
-            Console.WriteLine("Tags:");
+            _appOutput.WriteLine($"Summary for date: {dateTime.Value:yyyy-MM-dd}");
+            _appOutput.WriteLine($"Total questions: {daySummaryDto.QuestionTotal}");
+            _appOutput.WriteLine($"Total views: {daySummaryDto.ViewTotal}");
+            _appOutput.WriteLine("Tags:");
 
             string tags = _tagFormatter.Format(daySummaryDto.UniqueTags);
-            Console.WriteLine(tags);
+            _appOutput.WriteLine(tags);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace CrowdCat.TechnicalTest.ConsoleApp
 
             string[] tags = uniqueTags
                 .Distinct()
+                .OrderBy(x => x)
                 .ToArray();
 
             return string.Join(",", tags);

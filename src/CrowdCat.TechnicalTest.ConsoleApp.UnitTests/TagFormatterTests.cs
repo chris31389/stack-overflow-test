@@ -31,5 +31,27 @@ namespace CrowdCat.TechnicalTest.ConsoleApp.UnitTests
             // If first and last match, then there is only one occurence
             Assert.That(firstIndexOf, Is.EqualTo(lastIndexOf));
         }
+
+        [Test]
+        public void GivenVariousTags_WhenIFormat_ThenTheyAreReturnedInAlphabeticalOrder()
+        {
+            // Arrange
+            string[] strings = {"d", "b", "c", "a"};
+
+            // Act
+            string format = _tagFormatter.Format(strings);
+
+            // Assert
+            Assert.That(format, Is.Not.Null);
+            int indexOfA = format.IndexOf("a");
+            int indexOfB = format.IndexOf("b");
+            int indexOfC = format.IndexOf("c");
+            int indexOfD = format.IndexOf("d");
+ 
+            // If first and last match, then there is only one occurence
+            Assert.That(indexOfA, Is.LessThan(indexOfB));
+            Assert.That(indexOfB, Is.LessThan(indexOfC));
+            Assert.That(indexOfC, Is.LessThan(indexOfD));
+        }
     }
 }

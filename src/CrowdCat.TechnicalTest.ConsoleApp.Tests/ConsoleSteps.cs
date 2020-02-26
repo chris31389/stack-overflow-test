@@ -24,8 +24,19 @@ namespace CrowdCat.TechnicalTest.ConsoleApp.Tests
         [Then(@"I should see the total number of questions")]
         public void ThenIShouldSeeTheTotalNumberOfQuestions()
         {
-            string consoleOutput = _consoleDriver.Output;
-            Assert.That(consoleOutput, Contains.Substring("Hello"));
+            Assert.That(_consoleDriver.Output, Contains.Substring("Total questions: 5"));
+        }
+
+        [Then(@"I should see the total of view counts")]
+        public void ThenIShouldSeeTheTotalOfViewCounts()
+        {
+            Assert.That(_consoleDriver.Output, Contains.Substring("Total views: 109"));
+        }
+        
+        [Then(@"I should see the tags in distinct alphabetical order")]
+        public void ThenIShouldSeeTheTagsInDistinctAlphabeticalOrder()
+        {
+            Assert.That(_consoleDriver.Output, Contains.Substring("a,b,d,z"));
         }
     }
 }

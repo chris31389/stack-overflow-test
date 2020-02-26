@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CrowdCat.TechnicalTest.ConsoleApp
+namespace CrowdCat.TechnicalTest.StackExchange
 {
     public static class DateTimeExtensions
     {

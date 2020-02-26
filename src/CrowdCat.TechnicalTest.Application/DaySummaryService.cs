@@ -23,7 +23,7 @@ namespace CrowdCat.TechnicalTest.Application
             DaySummaryDto daySummaryDto = new DaySummaryDto
             {
                 QuestionTotal = questions.Count(),
-                UniqueTags = questions.SelectMany(question => question.Tags),
+                UniqueTags = questions.SelectMany(question => question.Tags).Distinct(),
                 ViewTotal = questions.Sum(x => x.ViewTotal)
             };
 
